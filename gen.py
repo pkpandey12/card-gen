@@ -30,7 +30,7 @@ ATTR_MAP = Attr_map(spread = {
   }, ab_score = 2, ability = "Self-Repair", 
   ability_desc = "This raider can repair minor damage to self over time",
   description = "Julian the Janitor, known as such because of his affinity to clean a place out while robbing it. In all his multiversal forms, his greed is constant. Just to be more irritating, he can fix himself.",
-  titan_strain = None)
+  titan_strain = 0)
 
 print(ATTR_MAP.get_overall())
 print(ATTR_MAP.spread)
@@ -66,21 +66,32 @@ for i in range(0,5):
       im.paste(logo, offset, logo)
 
 ## fit frame if needed
+if ATTR_MAP.titan_strain != None:
 
-frame = Image.new("RGBA", (2000,3000), (255,215,0))
+  titan_strain_color_map = {
+    0: (255,215,0),
+    1: (255, 0, 0),
+    2: (0,255,0),
+    3: (0,0,255),
+    4: (255, 255, 0),
+    5: (255, 0, 255),
+    6: (0, 255, 255)
+  }
 
-im = im.resize((round(im.size[0]*0.99), round(im.size[1]*0.995)))
+  frame = Image.new("RGBA", (2000,3000), titan_strain_color_map[ATTR_MAP.titan_strain])
 
-img_w, img_h = im.size
-bg_w, bg_h = frame.size
+  im = im.resize((round(im.size[0]*0.99), round(im.size[1]*0.995)))
 
-offset = ((bg_w - img_w) // 2, math.floor((bg_h - img_h) // 2))
+  img_w, img_h = im.size
+  bg_w, bg_h = frame.size
 
-frame.paste(im, offset)
+  offset = ((bg_w - img_w) // 2, math.floor((bg_h - img_h) // 2))
 
-im = frame
+  frame.paste(im, offset)
 
-draw =  ImageDraw.Draw(im, 'RGBA')
+  im = frame
+
+  draw =  ImageDraw.Draw(im, 'RGBA')
 
 
 ## paste raider on background and sub-background
@@ -120,11 +131,11 @@ im.paste(final_logo, offset, final_logo)
 
 ### RADAR STATS
 
-radar = Image.open('images/radar_1_1.png')
+# radar = Image.open('images/radar_1_1.png')
 
-img_w, img_h = radar.size
-offset = (math.floor(bg_w - (2*img_w)), (bg_h - img_h))
+# img_w, img_h = radar.size
+# offset = (math.floor(bg_w - (2*img_w)), (bg_h - img_h))
 
-im.paste(radar, offset, radar)
+# im.paste(radar, offset, radar)
 
 im.show()
