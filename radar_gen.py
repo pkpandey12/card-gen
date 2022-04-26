@@ -14,7 +14,7 @@ from matplotlib import rcParams
 
 from PIL import Image
 
-bbox = dict(boxstyle="round", ec="white", fc="white", alpha=0.7)
+bbox = dict(boxstyle="round", ec="white", fc="white", alpha=0.9)
 
 prop = font_manager.FontProperties(fname='/Users/praneetkumarpandey/NFT/card-gen/fonts/NovaCut-Regular.ttf')
 rcParams.update({'font.family': prop.get_name(), 'axes.edgecolor': 'white', 'axes.labelcolor': 'white', 'font.size': 50})
@@ -131,15 +131,15 @@ def radar_gen(spread=DEFAULT_SPREAD):
     spoke_labels = data.pop(0)
     title, case_data = data[0]
 
-    fig, ax = plt.subplots(figsize=(12, 12), subplot_kw=dict(projection='radar'))
+    fig, ax = plt.subplots(figsize=(20, 20), subplot_kw=dict(projection='radar'))
 
     ax.set_rgrids([0, 1, 2, 3, 4], labels=['','','','',''], fmt=None)
 
     for d in case_data:
         line = ax.plot(theta, d, color='white', linewidth=5)
-        ax.fill(theta, d, color='white', alpha=0.5)
+        ax.fill(theta, d, color='grey', alpha=0.9)
     invis_line = ax.plot(theta, [0,1,2,3,4,5], color='white', alpha=0.0)
-    ax.set_varlabels(spoke_labels)
+    # ax.set_varlabels(spoke_labels)
 
 
     plt.savefig('images/radar_1_1.png', transparent=True)

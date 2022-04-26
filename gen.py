@@ -69,7 +69,7 @@ for i in range(0,5):
 
 frame = Image.new("RGBA", (2000,3000), (255,215,0))
 
-im = im.resize((round(im.size[0]*0.95), round(im.size[1]*0.97)))
+im = im.resize((round(im.size[0]*0.99), round(im.size[1]*0.995)))
 
 img_w, img_h = im.size
 bg_w, bg_h = frame.size
@@ -93,15 +93,15 @@ im.paste(raider_img, offset, raider_img)
 
 ## Adding title text
 
-title_font = ImageFont.truetype('fonts/Megrim-Regular.ttf', 180)
-subtitle_font = ImageFont.truetype('fonts/Megrim-Regular.ttf', 70)
+title_font = ImageFont.truetype('fonts/Syncopate-Bold.ttf', 180)
+subtitle_font = ImageFont.truetype('fonts/Megrim-Regular.ttf', 120)
 
-draw.text((1350,50), "Julian", font=title_font, fill=(255, 255, 255))
-draw.text((1450,250), "The Janitor", font=subtitle_font, full=(255,255,255))
+draw.text((1050,50), "Julian", font=title_font, fill=(255, 255, 255))
+draw.text((1250,220), "The Janitor", font=subtitle_font, full=(255,255,255))
 
 ## TEXT UNDERLINE
 
-draw.line([(1350, 350), (img_w, 350)], fill='white', width=1)
+draw.line([(1000, 380), (img_w, 400)], fill='white', width=5)
 
 ## Adding final logo
 
@@ -112,7 +112,7 @@ final_logo = final_logo.resize((round(final_logo.size[0]*0.4), round(final_logo.
 img_w, img_h = final_logo.size
 bg_w, bg_h = im.size
 
-offset = ((bg_w-img_w-675), (50))
+offset = ((50), (50))
 im.paste(final_logo, offset, final_logo)
 
 ## Adding stats
@@ -123,7 +123,7 @@ im.paste(final_logo, offset, final_logo)
 radar = Image.open('images/radar_1_1.png')
 
 img_w, img_h = radar.size
-offset = (math.floor(bg_w - (1.7*img_w)), (bg_h - img_h))
+offset = (math.floor(bg_w - (2*img_w)), (bg_h - img_h))
 
 im.paste(radar, offset, radar)
 
